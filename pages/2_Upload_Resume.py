@@ -30,9 +30,6 @@ if css_path.exists():
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-# ------------------------------------------------------------
-# Cached queries
-# ------------------------------------------------------------
 @st.cache_data(ttl=60, show_spinner=False)
 def get_jobs_list():
     return fetch_all("SELECT id, title FROM jobs ORDER BY created_at DESC")
@@ -45,7 +42,6 @@ def get_skills_lookup():
 
 
 def clear_dashboard_cache():
-    """Clear dashboard stats cache if the app module is loaded."""
     try:
         import app as app_module
         if hasattr(app_module, "get_dashboard_stats"):
@@ -83,13 +79,9 @@ with st.form("upload_form", clear_on_submit=False):
     col1, col2 = st.columns(2)
 
     with col1:
-        selected_job_label = st.selectbox(
-            "Select job", list(job_options.keys())
-        )
-        candidate_name = st.text_input("Candidate name",
-                                        placeholder="Rahul Sharma")
-        candidate_email = st.text_input("Email",
-                                         placeholder="rahul@example.com")
+        selected_job_label = st.selectbox("Select job", list(job_options.keys()))
+        candidate_name = st.text_input("Candidate name", placeholder="Rahul Sharma")
+        candidate_email = st.text_input("Email", placeholder="rahul@example.com")
         candidate_phone = st.text_input("Phone", placeholder="+91 98765 43210")
 
     with col2:
@@ -112,12 +104,9 @@ with st.form("upload_form", clear_on_submit=False):
 
     st.markdown('<div class="section-title" style="margin-top:20px;">Resume File</div>',
                 unsafe_allow_html=True)
-    uploaded_file = st.file_uploader(
-        "Upload PDF or DOCX", type=["pdf", "docx"]
-    )
+    uploaded_file = st.file_uploader("Upload PDF or DOCX", type=["pdf", "docx"])
 
-    submitted = st.form_submit_button("Analyze resume",
-                                       use_container_width=True)
+    submitted = st.form_submit_button("Analyze resume", use_container_width=True)
 
 
 if submitted:
@@ -254,19 +243,25 @@ if submitted:
             for sk in resume_skills:
                 key = sk.lower()
                 if key in skill_lookup:
-                    try:
-                        execute(
-                            """INSERT IGNORE INTO candidate_skills
-                               (candidate_id, skill_id, resume_id)
-                               VALUES (:cid, :sid, :rid)""",
-                            {
-                                "cid": candidate_id,
-                                "sid": skill_lookup[key],
-                                "rid": resume_id,
-                            },
-                        )
-                    except Exception:
-                        pass
+                    existing_skill = fetch_one(
+                        """SELECT id FROM candidate_skills
+                           WHERE candidate_id = :cid AND skill_id = :sid""",
+                        {"cid": candidate_id, "sid": skill_lookup[key]},
+                    )
+                    if not existing_skill:
+                        try:
+                            execute(
+                                """INSERT INTO candidate_skills
+                                   (candidate_id, skill_id, resume_id)
+                                   VALUES (:cid, :sid, :rid)""",
+                                {
+                                    "cid": candidate_id,
+                                    "sid": skill_lookup[key],
+                                    "rid": resume_id,
+                                },
+                            )
+                        except Exception:
+                            pass
 
         clear_dashboard_cache()
 

@@ -1,7 +1,6 @@
 """
 app.py
 Main application - Login + Dashboard
-Performance optimized.
 """
 
 import sys
@@ -23,22 +22,36 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# ------------------------------------------------------------
+# Auto-seed demo data on first cloud run
+# ------------------------------------------------------------
+try:
+    from services.seed_data import seed
+    seed()
+except Exception:
+    pass
+
+# ------------------------------------------------------------
+# Load custom CSS
+# ------------------------------------------------------------
 css_path = BASE_DIR / "assets" / "style.css"
 if css_path.exists():
     with open(css_path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+# ------------------------------------------------------------
+# Session state
+# ------------------------------------------------------------
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     st.session_state.user = None
 
 
 # ------------------------------------------------------------
-# Cached setup - runs ONCE per session
+# Admin bootstrap
 # ------------------------------------------------------------
 @st.cache_resource(show_spinner=False)
 def ensure_admin_user():
-    """Runs only once. Not on every rerun."""
     try:
         user = fetch_one(
             "SELECT id, password_hash FROM users WHERE email = :e",
@@ -248,7 +261,7 @@ def render_skills_html(skills_data):
 
 
 # ------------------------------------------------------------
-# Cached DB queries for dashboard
+# Dashboard stats (cached)
 # ------------------------------------------------------------
 @st.cache_data(ttl=30, show_spinner=False)
 def get_dashboard_stats():

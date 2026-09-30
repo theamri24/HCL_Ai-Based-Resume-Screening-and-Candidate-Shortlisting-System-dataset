@@ -38,17 +38,3 @@ An AI-powered resume screening tool that helps HR teams automatically analyze re
 
 
 
-Streamlit UI
-
-↓
-
-Python Services (parser, NLP, features, prediction)
-
-↓
-
-ML Model (Gradient Boosting) + MySQL Database
-
-
-
-
-

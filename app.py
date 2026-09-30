@@ -23,8 +23,14 @@ st.set_page_config(
 )
 
 # ------------------------------------------------------------
-# Auto-seed demo data on first cloud run
+# Bootstrap model + seed data on first cloud run
 # ------------------------------------------------------------
+try:
+    from services.bootstrap_model import ensure_model
+    ensure_model()
+except Exception:
+    pass
+
 try:
     from services.seed_data import seed
     seed()

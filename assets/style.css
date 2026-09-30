@@ -1,0 +1,398 @@
+/* ============================================================
+   Resume Screening Platform — Corporate Theme
+   ============================================================ */
+
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                 Roboto, sans-serif;
+    color: #0f172a;
+}
+
+.stApp { background: #f1f5f9; }
+
+#MainMenu, footer, header[data-testid="stHeader"] { visibility: hidden; height: 0; }
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: #0f172a;
+    border-right: 1px solid #1e293b;
+}
+section[data-testid="stSidebar"] * { color: #e2e8f0 !important; }
+section[data-testid="stSidebar"] hr { border-color: #1e293b; margin: 14px 0; }
+section[data-testid="stSidebar"] a {
+    color: #cbd5e1 !important;
+    text-decoration: none !important;
+    padding: 9px 14px !important;
+    border-radius: 6px !important;
+    display: block !important;
+    margin: 2px 0 !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    transition: all 0.15s ease;
+}
+section[data-testid="stSidebar"] a:hover {
+    background: #1e293b !important;
+    color: #ffffff !important;
+}
+section[data-testid="stSidebar"] a[aria-current="page"] {
+    background: #1e40af !important;
+    color: #ffffff !important;
+}
+section[data-testid="stSidebar"] .stButton > button {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    font-weight: 500;
+}
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background: #334155;
+    color: #ffffff;
+}
+
+/* Typography */
+h1 {
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    letter-spacing: -0.02em;
+    margin: 0 0 2px 0 !important;
+}
+h2 {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    margin: 4px 0 12px 0 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+h3 {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+}
+
+.page-header {
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+.page-header h1 { margin-bottom: 4px !important; }
+.page-header p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* KPI cards */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.kpi-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.kpi-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+.kpi-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+}
+.kpi-value {
+    font-size: 26px;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+.kpi-sub {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+.kpi-card.accent-blue { border-left: 3px solid #1e40af; }
+.kpi-card.accent-green { border-left: 3px solid #15803d; }
+.kpi-card.accent-amber { border-left: 3px solid #b45309; }
+.kpi-card.accent-red { border-left: 3px solid #b91c1c; }
+
+/* Sections */
+.section-block {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 20px;
+}
+.section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+}
+.section-subtitle {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 16px;
+}
+
+/* Buttons */
+.stButton > button,
+.stFormSubmitButton > button {
+    background: #1e40af;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 13.5px;
+    padding: 8px 16px;
+    transition: background 0.15s ease;
+}
+.stButton > button:hover,
+.stFormSubmitButton > button:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+/* Inputs */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stNumberInput > div > div > input,
+.stSelectbox > div > div > div {
+    background: #ffffff;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    font-size: 13.5px !important;
+}
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: #1e40af !important;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.08) !important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 4px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.stTabs [data-baseweb="tab"] {
+    padding: 10px 18px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #64748b;
+}
+.stTabs [aria-selected="true"] {
+    color: #1e40af !important;
+    border-bottom: 2px solid #1e40af !important;
+}
+
+/* Containers */
+[data-testid="stVerticalBlockBorderWrapper"] {
+    background: #ffffff;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+/* Dataframe */
+[data-testid="stDataFrame"] {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+.badge-shortlist { background: #dcfce7; color: #14532d; }
+.badge-review { background: #fef3c7; color: #78350f; }
+.badge-reject { background: #fee2e2; color: #7f1d1d; }
+
+/* Empty state */
+.empty-state {
+    padding: 32px 20px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+/* Activity rows */
+.activity-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 13px;
+}
+.activity-row:last-child { border-bottom: none; }
+.activity-name { font-weight: 500; color: #0f172a; flex: 2; }
+.activity-job { color: #64748b; flex: 2; font-size: 12px; }
+.activity-score { font-weight: 600; color: #0f172a; flex: 1; text-align: right; }
+.activity-badge { flex: 1; text-align: right; }
+
+/* Login page */
+.stApp {
+    background-image:
+        radial-gradient(circle at 15% 15%, rgba(30, 64, 175, 0.05) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(30, 64, 175, 0.04) 0%, transparent 45%);
+}
+[data-testid="stForm"] {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 36px 32px 28px 32px !important;
+    box-shadow:
+        0 12px 32px -12px rgba(15, 23, 42, 0.12),
+        0 4px 8px -4px rgba(15, 23, 42, 0.04);
+}
+[data-testid="InputInstructions"] { display: none !important; }
+
+.brand-mark {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    margin: 0 auto 22px auto;
+    box-shadow: 0 6px 16px -6px rgba(30, 64, 175, 0.4);
+}
+.login-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+.login-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+[data-testid="stForm"] label {
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    margin-bottom: 6px !important;
+}
+[data-testid="stForm"] .stTextInput input {
+    height: 42px !important;
+    font-size: 14px !important;
+    border-radius: 8px !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 0 14px !important;
+}
+[data-testid="stForm"] .stTextInput input:focus {
+    border-color: #1e40af !important;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.08) !important;
+}
+[data-testid="stForm"] .stFormSubmitButton > button {
+    height: 44px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border-radius: 8px !important;
+    background: #1e40af !important;
+    margin-top: 6px !important;
+}
+[data-testid="stForm"] .stFormSubmitButton > button:hover {
+    background: #1d4ed8 !important;
+}
+.login-footer-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 22px 0 16px 0;
+}
+.login-hint {
+    text-align: center;
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.7;
+}
+.login-hint-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.login-hint code {
+    background: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 11.5px;
+    color: #1e40af;
+    font-weight: 500;
+    font-family: 'SF Mono', 'Consolas', monospace;
+}
+
+/* Skills — HTML card style */
+.skills-panel {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 22px 26px;
+}
+.skill-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 48px;
+    align-items: center;
+    gap: 18px;
+    padding: 11px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+.skill-row:last-child { border-bottom: none; }
+.skill-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.skill-bar-track {
+    height: 6px;
+    background: #f1f5f9;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%);
+    border-radius: 3px;
+}
+.skill-count {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    text-align: right;
+}
